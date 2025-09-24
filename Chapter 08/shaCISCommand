@@ -1,0 +1,3 @@
+gcloud scc settings update \
+  --organization=ORG_ID \
+  --enable-security-health-analytics

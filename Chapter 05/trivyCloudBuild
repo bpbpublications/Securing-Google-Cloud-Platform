@@ -1,0 +1,4 @@
+steps:
+- name: aquasec/trivy
+  entrypoint: trivy
+  args: ["--exit-code", "1", "--severity", "HIGH,CRITICAL", "gcr.io/$PROJECT_ID/app:${SHORT_SHA}"]

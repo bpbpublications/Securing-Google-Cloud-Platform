@@ -1,0 +1,15 @@
+  id: "Scan image"
+  name: "gcr.io/cloud-builders/gcloud"
+  entrypoint: "bash"
+  args:
+    - "-c"
+    - |
+      IMG="us-docker.pkg.dev/$PROJECT_ID/app:${SHORT_SHA}"
+      gcloud artifacts docker images scan $IMG \
+         --format=json > scan.json
+      JQ_CMD='.[0].vulnerabilityScanSummary.severityCount.CRITICAL'
+      CRIT=$(jq -r "$JQ_CMD" scan.json)
+      if [[ "$CRIT" != "0" ]]; then
+        echo "CRITICAL vulnerabilities found!"
+        exit 1
+      fi

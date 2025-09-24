@@ -1,0 +1,10 @@
+# Sign image with cosign after successful scan
+cosign sign \
+  --key gcpkms://projects/$PROJECT_ID/locations/global/keyRings/sec/cryptoKeys/build \
+  gcr.io/$PROJECT_ID/app:${SHORT_SHA}
+
+# Create Binary Auth attestation
+gcloud container binauthz attestations create \
+  --artifact-url=gcr.io/$PROJECT_ID/app@${DIGEST} \
+  --attestor=projects/$PROJECT_ID/attestors/build-system \
+  --signing-key-version=gcpkms://.../cryptoKeyVersions/1

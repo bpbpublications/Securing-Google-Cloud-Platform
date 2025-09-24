@@ -1,0 +1,84 @@
+## Step 1: Register the external cluster to GCP
+connect-register \
+  --project=acme-hybrid \
+  --location=us-central1 \
+  --gke-uri=https://CLUSTER_ENDPOINT \
+  --service-account-key-file=connect-agent-key.json
+## This connects an external EKS/AKS cluster to the Anthos control plane.
+
+## Step 2: Set up Anthos Config Management (ACM)
+## Clone your config repo and create a folder structure:
+config-repo/
+├── clusters/
+│   ├── gke-cluster/
+│   └── eks-cluster/
+├── namespaces/
+└── policies/
+
+## Step 3: Create the Gatekeeper Constraint Template
+## Create template-no-root.yaml:
+apiVersion: templates.gatekeeper.sh/v1beta1
+kind: ConstraintTemplate
+metadata:
+  name: k8snoroot
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sNoRoot
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package k8snoRoot
+        violation[{"msg": msg}] {
+          input.review.object.spec.securityContext.runAsNonRoot == false
+          msg := "Privileged container usage is not allowed."
+        }
+
+## Step 4: Apply the Constraint Policy with Exceptions
+## Create constraint-no-root.yaml:
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sNoRoot
+metadata:
+  name: block-root-containers
+spec:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+    namespaces:
+      - "*"
+    excludedNamespaces:
+      - "logging"
+## This policy blocks root containers, except in the logging namespace.
+
+## Step 5: Commit and Push
+git add .
+git commit -m "Add Gatekeeper root-blocking policy"
+git push origin main
+ACM will automatically sync this to all registered clusters.
+
+## Step 6: Validate Policy Enforcement
+## Deploy a non-compliant pod:
+apiVersion: v1
+kind: Pod
+metadata:
+  name: bad-pod
+spec:
+  containers:
+    - name: insecure
+      image: nginx
+      securityContext:
+        runAsNonRoot: false
+
+
+kubectl apply -f bad-pod.yaml
+## Expected result: Rejected with message: "Privileged container usage is not allowed."
+
+## Optional: Monitor Violations
+## Enable Policy Controller metrics and view violations in Cloud Console or use:
+kubectl get constraintviolations
+
+## Cleanup
+kubectl delete -f constraint-no-root.yaml
+kubectl delete -f template-no-root.yaml

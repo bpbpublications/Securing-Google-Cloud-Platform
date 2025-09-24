@@ -1,0 +1,4 @@
+condition {
+  title       = "Device Encryption Requirement"
+  expression  = "request.device.encryption_status == 'ENCRYPTED'"
+}

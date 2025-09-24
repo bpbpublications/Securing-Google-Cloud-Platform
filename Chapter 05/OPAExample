@@ -1,0 +1,9 @@
+package terraform.analysis
+
+deny[msg] {
+  input.resource_changes[_].change.after.resource_type == "google_compute_firewall"
+  rule := input.resource_changes[_].change.after
+  rule.allow_ingress_ports[_] == 22
+  rule.source_ranges[_] == "0.0.0.0/0"
+  msg := sprintf("Ingress rule %v allows SSH from 0.0.0.0/0, which is not allowed.", [rule.name])
+}

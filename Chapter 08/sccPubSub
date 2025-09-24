@@ -1,0 +1,4 @@
+gcloud scc notifications create my-finding-feed \
+  --organization=ORG_ID \
+  --pubsub-topic=projects/PROJECT_ID/topics/my-scc-topic \
+  --filter="severity=\"HIGH\""

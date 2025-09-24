@@ -1,0 +1,6 @@
+package gcp.firewall
+deny[msg] {
+  input.direction == "INGRESS"
+  input.source_ranges[_] == "0.0.0.0/0"
+  msg := "Ingress rule exposes resource to the internet"
+}

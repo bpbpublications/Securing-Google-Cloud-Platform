@@ -1,0 +1,7 @@
+gcloud iam workload-identity-pools create github-pool \
+  --location="global" \
+  --display-name="GitHub Pool"
+
+gcloud iam service-accounts add-iam-policy-binding ci-cd-svc@proj.iam.gserviceaccount.com \
+  --role="roles/iam.workloadIdentityUser" \
+  --member="principalSet://iam.googleapis.com/projects/123456/locations/global/workloadIdentityPools/github-pool/*"

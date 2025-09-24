@@ -1,0 +1,8 @@
+# 1. Create a VLAN attachment (aka VLAN interconnect)
+gcloud compute interconnects attachments create my-vlan-attach \
+    --region=us-central1 \
+    --router=my-nat-router \
+    --edge-availability-domain=AVAILABILITY_DOMAIN_1 \
+    --interconnect=projects/PROJECT_ID/global/interconnects/MY_INTERCONNECT \
+    --vlan=1234 \
+    --description="VLAN attachment for my Interconnect"

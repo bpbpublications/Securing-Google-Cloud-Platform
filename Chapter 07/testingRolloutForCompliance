@@ -1,0 +1,2 @@
+# Sample OPA dry-run evaluation
+opa eval --data policies.rego --input test-resource.json "data.gcp.deny"

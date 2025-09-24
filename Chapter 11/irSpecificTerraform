@@ -1,0 +1,22 @@
+resource "google_service_account" "ir_responder" {
+  account_id   = "ir-responder"
+  display_name = "Incident Response Responder Account"
+}
+
+resource "google_project_iam_binding" "ir_logging_viewer" {
+  project = "your-project-id"
+  role    = "roles/logging.viewer"
+
+  members = [
+    "serviceAccount:${google_service_account.ir_responder.email}",
+  ]
+}
+
+resource "google_project_iam_binding" "ir_compute_admin" {
+  project = "your-project-id"
+  role    = "roles/compute.instanceAdmin.v1"
+
+  members = [
+    "serviceAccount:${google_service_account.ir_responder.email}",
+  ]
+}

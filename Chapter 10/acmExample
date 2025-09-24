@@ -1,0 +1,10 @@
+accessPolicies:
+  - name: "restricted-production-access"
+    conditions:
+      devicePolicy:
+        osConstraints:
+          - osType: DESKTOP_MAC
+            minimumVersion: "13.5"
+        encryptionStatuses:
+          - ENCRYPTED
+        requireScreenLock: true

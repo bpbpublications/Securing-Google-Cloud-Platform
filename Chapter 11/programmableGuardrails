@@ -1,0 +1,8 @@
+{
+  "condition": {
+    "title": "Deny External IP During IR",
+    "expression": "!resource.name.startsWith('projects/allowed-projects')"
+  },
+  "members": ["allUsers"],
+  "role": "roles/compute.admin"
+}

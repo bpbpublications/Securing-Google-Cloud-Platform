@@ -1,0 +1,7 @@
+# Example: Provision a GKE cluster on AWS
+gcloud container aws clusters create aws-test-cluster \
+  --region=us-west-2 \
+  --cluster-version=1.27 \
+  --vpc-id=vpc-123456 \
+  --subnet-ids=subnet-a,subnet-b \
+  --iam-instance-profile=gke-node-role

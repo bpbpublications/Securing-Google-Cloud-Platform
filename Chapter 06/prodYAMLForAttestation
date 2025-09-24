@@ -1,0 +1,6 @@
+defaultAdmissionRule:
+evaluationMode: REQUIRE_ATTESTATION
+requireAttestationsBy:
+projects/$PROJECT_ID/attestors/security-team
+vulnerabilityBasis:
+maximumFixableSeverity: "MEDIUM"

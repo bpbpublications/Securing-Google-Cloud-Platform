@@ -1,0 +1,8 @@
+resource "google_kms_key_ring" "prod_keyring" {
+  name     = "prod-keyring"
+  location = "global"
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}

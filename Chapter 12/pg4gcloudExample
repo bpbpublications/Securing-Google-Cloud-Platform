@@ -1,0 +1,10 @@
+# Create a subnet in shared VPC
+gcloud compute networks subnets create app-subnet \
+  --network=shared-vpc \
+  --region=us-central1 \
+  --range=10.10.0.0/16
+
+# Bind IAM policy for DevOps role
+gcloud projects add-iam-policy-binding dev-project \
+  --member="user:devops@example.com" \
+  --role="roles/custom.devopsMinimal"

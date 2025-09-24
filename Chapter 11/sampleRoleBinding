@@ -1,0 +1,7 @@
+bindings:
+- members:
+  - user:ir_lead@example.com
+  role: roles/logging.viewer
+- members:
+  - user:ir_analyst@example.com
+  role: roles/compute.instanceAdmin.v1

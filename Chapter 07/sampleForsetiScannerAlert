@@ -1,0 +1,3 @@
+rule_name: 'Bucket should not be publicly accessible'
+resource: 'storage.googleapis.com'
+violation: 'Bucket has allUsers or allAuthenticatedUsers permissions'

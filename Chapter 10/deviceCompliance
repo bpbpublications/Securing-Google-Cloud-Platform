@@ -1,0 +1,9 @@
+accessPolicies:
+  - name: "require_compliant_device"
+    conditions:
+      devicePolicy:
+        osConstraints:
+          - osType: DESKTOP_WINDOWS
+            minimumVersion: "10.0.19044"
+        encryptionStatuses:
+          - ENCRYPTED

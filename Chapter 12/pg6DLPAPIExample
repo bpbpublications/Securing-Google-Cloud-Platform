@@ -1,0 +1,12 @@
+from google.cloud import dlp_v2
+client = dlp_v2.DlpServiceClient()
+
+item = {"value": "John Doe, SSN: 123-45-6789"}
+inspect_config = {"info_types": [{"name": "US_SOCIAL_SECURITY_NUMBER"}]}
+
+response = client.inspect_content(
+    request={"item": item, "inspect_config": inspect_config}
+)
+
+for finding in response.result.findings:
+    print(f"Found: {finding.info_type.name}")

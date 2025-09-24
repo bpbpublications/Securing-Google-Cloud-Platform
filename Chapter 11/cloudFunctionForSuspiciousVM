@@ -1,0 +1,35 @@
+const {InstancesClient} = require('@google-cloud/compute').v1;
+const computeClient = new InstancesClient();
+
+exports.autoTagQuarantine = async (pubSubEvent, context) => {
+  const message = Buffer.from(pubSubEvent.data, 'base64').toString();
+  const data = JSON.parse(message);
+
+  const projectId = data.projectId;
+  const zone = data.zone;
+  const instanceName = data.instanceName;
+
+  console.log(`Tagging instance ${instanceName} in ${projectId}/${zone} for quarantine.`);
+
+  const [instance] = await computeClient.get({
+    project: projectId,
+    zone: zone,
+    instance: instanceName,
+  });
+
+  const labels = instance.labels || {};
+  labels['status'] = 'quarantine';
+
+  const request = {
+    project: projectId,
+    zone: zone,
+    instance: instanceName,
+    instancesSetLabelsRequestResource: {
+      labelFingerprint: instance.labelFingerprint,
+      labels: labels,
+    },
+  };
+
+  await computeClient.setLabels(request);
+  console.log(`Instance ${instanceName} successfully tagged with quarantine.`);
+};

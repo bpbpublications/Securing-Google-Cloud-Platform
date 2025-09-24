@@ -1,0 +1,8 @@
+# Example: Block IP address with VPC firewall
+ gcloud compute firewall-rules create deny-suspicious-ip \
+   --direction=EGRESS \
+   --priority=100 \
+   --destination-ranges=203.0.113.42/32 \
+   --action=DENY \
+   --rules=all \
+   --network=default

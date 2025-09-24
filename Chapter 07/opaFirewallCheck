@@ -1,0 +1,10 @@
+package gcp.security
+
+deny[msg] {
+  input.resource.type == "compute.firewall"
+  input.resource.properties.sourceRanges[_] == "0.0.0.0/0"
+  msg := "Unrestricted ingress detected in firewall rule"
+}
+
+# Run policy evaluation in dry-run mode
+opa eval --data policy.rego --input test-resource.json "data.gcp.security.deny"

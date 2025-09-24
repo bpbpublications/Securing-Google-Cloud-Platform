@@ -1,0 +1,5 @@
+# Schedule key rotation every 90 days
+gcloud kms keys update bq-key \
+  --location=us \
+  --keyring=analytics-ring \
+  --rotation-period=7776000s

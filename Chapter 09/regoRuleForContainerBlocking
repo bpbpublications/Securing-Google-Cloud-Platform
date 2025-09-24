@@ -1,0 +1,10 @@
+# Example Rego rule to block containers running as root, with whitelist support
+violation[{
+  "msg": sprintf("Privileged container usage is not allowed in namespace: %v", [input.review.object.metadata.namespace]),
+}] {
+  input.review.object.spec.securityContext.runAsNonRoot == false
+  not input.review.object.metadata.namespace == whitelist_ns[_]
+}
+
+# Define list of whitelisted namespaces
+whitelist_ns := ["kube-system", "monitoring"]

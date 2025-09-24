@@ -1,0 +1,4 @@
+resource.type="project"
+protoPayload.methodName="SetIamPolicy"
+protoPayload.serviceData.policyDelta.bindingDeltas.action="ADD"
+protoPayload.serviceData.policyDelta.bindingDeltas.role="roles/owner"

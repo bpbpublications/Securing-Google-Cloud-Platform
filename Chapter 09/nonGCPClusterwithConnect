@@ -1,0 +1,5 @@
+connect-register \
+  --project=acme-hybrid \
+  --location=us-central1 \
+  --gke-uri=https://CLUSTER_ENDPOINT \
+  --service-account-key-file=connect-agent-key.json

@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: payment-service
+spec:
+  hosts:
+    - payment.example.com
+  http:
+    - route:
+        - destination:
+            host: payment-v1
+          weight: 90
+        - destination:
+            host: payment-v2
+          weight: 10

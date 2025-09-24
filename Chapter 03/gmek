@@ -1,0 +1,6 @@
+# Enable a bucket to use a specified key for default encryption
+gsutil bucketpolicyonly set on gs://my-secure-bucket
+
+gsutil kms encryption set \
+    projects/PROJECT_ID/locations/global/keyRings/demo-keyring/cryptoKeys/demo-key \
+    gs://my-secure-bucket

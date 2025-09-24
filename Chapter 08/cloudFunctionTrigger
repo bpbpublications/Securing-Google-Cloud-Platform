@@ -1,0 +1,5 @@
+# Example Cloud Function trigger
+exports.remediateFinding = (pubSubEvent, context) => {
+  const finding = JSON.parse(Buffer.from(pubSubEvent.data, 'base64').toString());
+  // Trigger remediation or alerting logic based on finding severity/type
+};

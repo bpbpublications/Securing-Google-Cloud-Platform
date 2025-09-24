@@ -1,0 +1,4 @@
+gcloud scc custom-modules create \
+  --organization=ORG_ID \
+  --module-type=SECURITY_HEALTH_ANALYTICS \
+  --custom-config-from-file=custom_detector.yaml

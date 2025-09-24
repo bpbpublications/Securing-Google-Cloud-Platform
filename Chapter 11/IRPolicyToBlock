@@ -1,0 +1,6 @@
+{
+  "constraint": "constraints/compute.vmExternalIpAccess",
+  "listPolicy": {
+    "deniedValues": ["projects/*"]
+  }
+}

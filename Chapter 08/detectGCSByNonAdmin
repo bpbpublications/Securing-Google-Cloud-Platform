@@ -1,0 +1,6 @@
+customConfig:
+  predicate:
+    expression: "resource.type == 'gcs_bucket' && protoPayload.methodName == 'storage.setIamPermissions' && !protoPayload.authenticationInfo.principalEmail.endsWith('@admin-domain.com')"
+  resourceSelector:
+    resourceTypes:
+      - "gcs_bucket"

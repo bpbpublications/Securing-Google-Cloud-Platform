@@ -1,0 +1,9 @@
+# deny-external-ip-policy.yaml
+constraint: constraints/compute.vmExternalIpAccess
+listPolicy:
+  deniedValues:
+    - "allUsers"
+  allValues: DENY
+To validate using Terraform Validator:
+terraform plan -out=tfplan.binary
+terraform-validator validate tfplan.binary --policy-path=./org-policies

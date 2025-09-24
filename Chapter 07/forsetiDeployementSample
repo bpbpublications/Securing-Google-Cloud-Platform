@@ -1,0 +1,15 @@
+# Enable necessary APIs and create a dedicated Forseti project
+export PROJECT_ID=forseti-security
+export REGION=us-central1
+
+gcloud projects create $PROJECT_ID --set-as-default
+
+# Enable services
+for SERVICE in compute.googleapis.com cloudresourcemanager.googleapis.com iam.googleapis.com; do
+  gcloud services enable $SERVICE
+  done
+
+# Clone Forseti and deploy with Terraform
+git clone https://github.com/forseti-security/forseti-security.git
+cd forseti-security/terraform
+terraform init && terraform apply

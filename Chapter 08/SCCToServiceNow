@@ -1,0 +1,14 @@
+import requests
+
+SERVICENOW_URL = "https://instance.service-now.com/api/now/table/incident"
+HEADERS = {"Content-Type": "application/json"}
+
+payload = {
+  "short_description": "SCC Finding - IAM Privilege Escalation",
+  "description": "Detected an IAM Owner role granted to user@example.com",
+  "urgency": "1",
+  "impact": "1",
+  "category": "Security"
+}
+
+requests.post(SERVICENOW_URL, auth=("api_user", "api_password"), headers=HEADERS, json=payload)

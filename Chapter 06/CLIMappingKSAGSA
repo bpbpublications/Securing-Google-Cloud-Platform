@@ -1,0 +1,13 @@
+# 1. Enable Workload Identity on your GKE cluster
+gcloud container clusters update my-cluster \
+    --workload-pool=my-project.svc.id.goog
+
+# 2. Allow the KSA to impersonate the GSA
+gcloud iam service-accounts add-iam-policy-binding my-gsa@my-project.iam.gserviceaccount.com \
+    --role roles/iam.workloadIdentityUser \
+    --member "serviceAccount:my-project.svc.id.goog[my-namespace/my-ksa]"
+
+# 3. Annotate the KSA with the GSA
+kubectl annotate serviceaccount \
+    --namespace my-namespace my-ksa \
+    iam.gke.io/gcp-service-account=my-gsa@my-project.iam.gserviceaccount.com

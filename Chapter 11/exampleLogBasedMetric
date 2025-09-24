@@ -1,0 +1,10 @@
+{
+  "name": "high_impact_iam_change",
+  "filter": "protoPayload.methodName=\"google.iam.admin.v1.SetIamPolicy\"",
+  "metricDescriptor": {
+    "metricKind": "DELTA",
+    "valueType": "INT64",
+    "unit": "1",
+    "description": "Counts IAM policy changes for high-risk escalation detection"
+  }
+}

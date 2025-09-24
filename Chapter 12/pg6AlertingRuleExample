@@ -1,0 +1,4 @@
+resource.type="bigquery_resource"
+protoPayload.methodName="tableservice.tables.query"
+protoPayload.authorizationInfo.permission="bigquery.tables.getData"
+Trigger an alert when an unauthorised user queries SELECT * FROM patient_data.

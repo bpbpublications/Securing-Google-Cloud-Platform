@@ -1,0 +1,9 @@
+accessPolicies:
+  - name: "admin-access"
+    conditions:
+      devicePolicy:
+        osConstraints:
+          - osType: DESKTOP_CHROME_OS
+          - osType: DESKTOP_WINDOWS
+        encryptionStatuses:
+          - ENCRYPTED

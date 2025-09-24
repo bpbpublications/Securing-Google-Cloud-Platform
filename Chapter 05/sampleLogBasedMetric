@@ -1,0 +1,4 @@
+resource.type="gce_instance"
+logName="projects/YOUR_PROJECT_ID/logs/cloudaudit.googleapis.com%2Fdata_access"
+protoPayload.resourceName="projects/YOUR_PROJECT_ID/secrets/YOUR_SECRET_NAME"
+NOT timestamp: "T09:00:00Z/T18:00:00Z"

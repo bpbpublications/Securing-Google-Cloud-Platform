@@ -1,0 +1,5 @@
+condition {
+  expression = "device.encryption_status == 'ENCRYPTED' && request.auth.claims.group == 'finance-team'"
+  title       = "Finance Devices Only"
+  description = "Access allowed only from encrypted finance laptops."
+}

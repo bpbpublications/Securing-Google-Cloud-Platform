@@ -1,0 +1,3 @@
+- name: bridgecrew/checkov
+  entrypoint: checkov
+  args: ["--directory", ".", "--soft-fail", "false", "--quiet"]

@@ -1,0 +1,4 @@
+resource.type = "gce_instance"
+logName = "projects/your-project/logs/cloudaudit.googleapis.com%2Factivity"
+severity = "ERROR"
+protoPayload.methodName = "SetIamPolicy"

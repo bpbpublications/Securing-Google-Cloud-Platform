@@ -1,0 +1,4 @@
+# Enable Container Threat Detection
+ gcloud scc container-threat-detection update \
+   --organization=ORG_ID \
+   --enable

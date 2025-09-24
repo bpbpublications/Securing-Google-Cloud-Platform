@@ -1,0 +1,26 @@
+# 1. Create a new custom-mode VPC network named 'my-secure-network'
+# Custom mode allows you to define your own subnets rather than auto-created ones.
+gcloud compute networks create my-secure-network \
+    --subnet-mode=custom
+
+# 2. Add a custom subnet in the 'us-central1' region with the IP range 10.0.1.0/24
+# This subnet will be used to deploy resources within the specified IP range.
+gcloud compute networks subnets create my-subnet-us-central \
+    --network=my-secure-network \
+    --region=us-central1 \
+    --range=10.0.1.0/24
+
+# 3. Create a custom route for traffic destined to 10.0.2.0/24 to go via the default internet gateway
+# Useful for defining specific routing behavior for outgoing or inter-subnet traffic.
+gcloud compute routes create my-custom-route \
+    --network=my-secure-network \
+    --destination-range=10.0.2.0/24 \
+    --next-hop-gateway=default-internet-gateway
+
+# 4. Create a firewall rule to allow SSH (TCP port 22) only from a trusted IP range
+# This enhances security by restricting SSH access to known IP addresses.
+gcloud compute firewall-rules create allow-ssh-trusted \
+    --network=my-secure-network \
+    --allow=tcp:22 \
+    --source-ranges=198.51.100.0/24 \
+    --description="Allow SSH only from trusted IP"

@@ -1,0 +1,14 @@
+resource "google_compute_firewall" "allow_https_from_office" {
+  name    = "allow-https-from-office"
+  network = "my-secure-network"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["443"]
+  }
+
+  source_ranges = ["203.0.113.0/24"] # Replace with your office IP range
+  target_tags   = ["web-server"]
+
+  description = "Allow HTTPS traffic from office IP range only"
+}

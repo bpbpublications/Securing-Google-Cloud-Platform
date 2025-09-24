@@ -1,0 +1,21 @@
+{
+  "protoPayload": {
+    "authenticationInfo": {
+      "principalEmail": "google-admin@google.com"
+    },
+    "resourceName": "projects/project-id/buckets/bucket-name",
+    "serviceName": "storage.googleapis.com",
+    "methodName": "storage.objects.get",
+    "requestMetadata": {
+      "callerIp": "203.0.113.1",
+      "regionCode": "US"
+    },
+    "authorizationInfo": [
+      {
+        "resource": "bucket-name",
+        "permission": "storage.objects.get",
+        "granted": true
+      }
+    ]
+  }
+}

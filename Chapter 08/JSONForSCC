@@ -1,0 +1,8 @@
+{
+  "name": "organizations/123/sources/456/findings/abc-def",
+  "category": "PUBLIC_BUCKET_ACL",
+  "severity": "HIGH",
+  "state": "ACTIVE",
+  "resourceName": "//storage.googleapis.com/my-bucket",
+  "eventTime": "2024-12-10T10:00:00Z"
+}

@@ -1,0 +1,7 @@
+# SSH into node and export container filesystem
+gcloud compute ssh gke-node
+sudo docker export <container_id> > /tmp/suspect-container.tar
+
+# Snapshot persistent disk
+gcloud compute disks snapshot pd-01 \
+  --snapshot-names=disk-snap-incident001

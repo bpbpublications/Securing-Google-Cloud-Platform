@@ -1,0 +1,4 @@
+gcloud container clusters update secure-prod \
+   --workload-pool=myproj.svc.id.goog
+kubectl annotate serviceaccount api-sa \
+   iam.gke.io/gcp-service-account=api-gsa@myproj.iam.gserviceaccount.com

@@ -1,0 +1,14 @@
+# Create a Key Ring
+gcloud kms keyrings create demo-keyring \
+    --location=global
+
+# Create a Symmetric Encryption Key
+gcloud kms keys create demo-key \
+    --location=global \
+    --keyring=demo-keyring \
+    --purpose=encryption
+
+# Add a new Key Version (for rotation or backup)
+gcloud kms keys versions create demo-key \
+    --location=global \
+    --keyring=demo-keyring

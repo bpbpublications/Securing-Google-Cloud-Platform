@@ -1,0 +1,5 @@
+kind: NetworkPolicy
+metadata: { name: default-deny }
+spec:
+podSelector: {}
+policyTypes: ["Ingress", "Egress"]

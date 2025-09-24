@@ -1,0 +1,4 @@
+gcloud compute security-policies rules update 1000 \
+  --security-policy="prod-waf" \
+  --expression="origin.region_code == 'CN'" \
+  --action=deny-403

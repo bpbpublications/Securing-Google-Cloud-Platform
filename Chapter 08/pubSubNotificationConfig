@@ -1,0 +1,5 @@
+# Example: Create a Pub/Sub notification config
+ gcloud scc notifications create auto-remediation-feed \
+  --organization=ORG_ID \
+  --pubsub-topic=projects/PROJECT_ID/topics/scc-findings \
+  --filter="severity=\"CRITICAL\""

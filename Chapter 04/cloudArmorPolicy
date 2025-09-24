@@ -1,0 +1,16 @@
+# 1. Create a Cloud Armor security policy
+gcloud compute security-policies create my-waf-policy \
+    --description="WAF rules for blocking malicious traffic"
+
+# 2. Add a rule to block traffic from a specific IP range
+gcloud compute security-policies rules create 1000 \
+    --security-policy=my-waf-policy \
+    --src-ip-ranges=203.0.113.0/24 \
+    --action=deny-403 \
+    --description="Deny requests from known malicious range" \
+    --expression="true"
+
+# 3. Attach the policy to a backend service
+gcloud compute backend-services update my-backend-service \
+    --security-policy=my-waf-policy \
+    --global

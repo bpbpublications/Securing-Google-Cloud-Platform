@@ -1,0 +1,3 @@
+{
+  "text": ":rotating_light: *Incident Alert* :rotating_light:\nSeverity: P1\nProject: your-project-id\nResource: instance-1\nDetected: Suspicious IAM Role Escalation\nAction: Review and initiate containment.\n<https://console.cloud.google.com/security/command-center|View in SCC>"
+}

@@ -1,0 +1,12 @@
+SELECT
+  timestamp,
+  connection.src_ip,
+  connection.dest_ip,
+  connection.dest_port,
+  connection.bytes_sent,
+  connection.bytes_received
+FROM
+  `project_id.flow_logs_dataset.flow_logs_table`
+WHERE
+  connection.dest_ip IN UNNEST(['203.0.113.1', '198.51.100.2'])
+  AND timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 DAY)

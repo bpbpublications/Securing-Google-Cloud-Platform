@@ -1,0 +1,14 @@
+# 1. Check syntax and variable types
+terraform validate
+
+# 2. Enforce consistent formatting
+terraform fmt -check -recursive
+
+# 3. Static analysis for security misconfigurations
+tfsec .
+
+# 4. Policy compliance checks (if using)
+opa eval --input terraform.plan.json --data policy.rego
+
+# 5. Optional: Validate Terraform module documentation
+terraform-docs markdown . --check

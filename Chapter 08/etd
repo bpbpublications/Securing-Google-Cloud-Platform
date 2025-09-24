@@ -1,0 +1,4 @@
+# Example: Enable ETD via CLI
+gcloud scc settings update \
+  --organization=ORG_ID \
+  --enable-event-threat-detection
